@@ -1,0 +1,48 @@
+																	                 -- COMMENTS--
+
+create table #INFO												      	-- Create new table (define column types)
+(id int
+, name nvarchar(30)
+, birthdate date
+, vocation nvarchar(50)
+)
+
+select * from #INFO												      	-- CHECK data in table #INFO
+
+--------------------------------
+insert into #INFO values											    -- insert values into table
+(1, 'John', '2000-12-01', 'Writer'),
+(3, 'Sam', '1990-11-12','Scientist'),
+(2, 'Victor', '1981-01-10','Biker')
+select * from #INFO
+
+--------------------------------
+insert into #INFO values										      	-- insert another values into table
+  (4,'Kenny','2010-02-01','Doctor')
+, (6, 'Karl','1999-12-04','Scientist')
+, (5,'Christine', '2009-09-09','Scientist')											
+																	
+select * from #INFO													        -- ALL rows
+select * from #INFO order by id								  		-- ALL rows order by id
+select top 2 * from #INFO order by id								-- only Top 2 rows if order by id
+select * from #INFO where birthdate >'1995-01-01' order by id		-- more than a certain date
+select name from #INFO where birthdate >'1995-01-01' order by id	-- only names and more than a certain date 
+
+select * from #INFO where vocation = 'Scientist'		
+
+select count(*) as count_sci from #INFO								-- count of "Scientists"
+where vocation = 'Scientist'	-- only "Scientists"
+
+select max(birthdate) as youngest_man_bd from #INFO		-- the Youngest
+
+select top 1 max(birthdate) over (partition by vocation) 
+as the_youngest_Scientist  
+from #INFO														              	-- the Youngest among "Scientists" -- WINDOW FUNCTION
+where vocation = 'Scientist'
+
+select left(vocation,2) from #INFO						  			--only two letters from left side
+select substring(name,1,4) from #INFO			  					--only four letter from 1 position of word
+
+--------------------------------
+truncate table #INFO												          -- clear all data in table #INFO
+select * from #INFO													          -- CHECK
