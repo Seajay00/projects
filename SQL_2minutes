@@ -1,4 +1,4 @@
-																	                 -- COMMENTS--
+																	    -- COMMENTS--
 
 create table #INFO												      	-- Create new table (define column types)
 (id int
